@@ -1,13 +1,13 @@
 const express = require("express");
-// express server
 const app = express();
-//  nodejs
-const server = require("http").Server(app);
-// nodejs => socket enabled
-const path = require("path");
-const io = require("socket.io")(server);
-// serve static assets to client
-app.use(express.static("public"));
+const cors = require('cors')
+app.use(cors());
+const http = require("http").createServer(app);
+const io = require("socket.io")(http, {
+    cors: {
+        origin: '*',
+    }
+});
 
 io.on("connection", function (socket) {
     console.log(`${socket.id} connected`);
@@ -37,6 +37,6 @@ io.on("connection", function (socket) {
     })
 });
 const port = process.env.PORT || 3000;
-server.listen(port, function (req, res) {
-    console.log("Server has started at port 3000");
+http.listen(port, () => {
+    console.log("listening on *:3000");
 });
