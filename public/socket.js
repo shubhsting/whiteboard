@@ -48,7 +48,7 @@ socket.on("staagya", function (stick) {
     closediv.classList.add("close");
 
     let imgclose = document.createElement("img");
-    imgclose.setAttribute("src", "./images/close.png");
+    imgclose.setAttribute("src", "./images/close.svg");
     imgclose.setAttribute("id", "imgo");
 
     closediv.appendChild(imgclose);
