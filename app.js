@@ -1,12 +1,16 @@
 const express = require("express");
+// express server
 const app = express();
-const cors = require('cors')
-app.use(cors());
-const http = require("http").createServer(app);
-const io = require("socket.io")(http, {
-    cors: {
-        origin: '*',
-    }
+//  nodejs
+const server = require("http").Server(app);
+// nodejs => socket enabled
+const path = require("path");
+const io = require("socket.io")(server);
+// serve static assets to client
+app.use(express.static("public"));
+app.get('/', (req, res) => {
+    //   res.sendFile(__dirname + '/public/index.html');
+    res.redirect("/master.html");
 });
 
 io.on("connection", function (socket) {
@@ -37,6 +41,6 @@ io.on("connection", function (socket) {
     })
 });
 const port = process.env.PORT || 3000;
-http.listen(port, () => {
+server.listen(port, () => {
     console.log("listening on *:3000");
 });
