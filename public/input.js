@@ -12,7 +12,6 @@ upload.addEventListener("click", function () {
 })
 
 imageUpload.addEventListener("change", function () {
-
     // console.log(imageUpload.file);
     let fileObject = imageUpload.files[0];
     let filePath = URL.createObjectURL(fileObject);
@@ -22,9 +21,7 @@ imageUpload.addEventListener("change", function () {
     // set attribute of img element
     img.setAttribute("src", filePath)
     img.classList.add("photo");
-
     // socket.emit("imagecome", filePath);
-
     let sticky = document.createElement("div");
     sticky.classList.add("sticky");
 
@@ -57,11 +54,6 @@ imageUpload.addEventListener("change", function () {
     let stickybody = document.createElement("div");
     stickybody.classList.add("sticky-body");
 
-    // let textarea = document.createElement("textarea");
-    // textarea.setAttribute("id", "textarea");
-
-    // textarea.setAttribute("cols", "30");
-    // textarea.setAttribute("rows", "10");
     sticky.appendChild(stickyheader);
 
     sticky.appendChild(stickybody);
@@ -79,7 +71,7 @@ imageUpload.addEventListener("change", function () {
         initialX = e.clientX;
         initialY = e.clientY - topOffSet;
     })
-
+    //sticky events
     stickyheader.addEventListener("mousemove", function (e) {
         if (isStickyHold) {
             let finalX = e.clientX;
